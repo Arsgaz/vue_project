@@ -29,12 +29,12 @@
     <v-app-bar app dark color="primary">
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
         <v-toolbar-items class="hidden-sm-and-down">
 
           <v-btn v-for="link in links" :key="link.title"><v-icon start :icon="link.icon"></v-icon>
             {{ link.title }}
           </v-btn>
+        </v-toolbar-items>  
     </v-app-bar>
     <v-main>
     </v-main>
