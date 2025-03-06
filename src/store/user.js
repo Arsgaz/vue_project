@@ -39,6 +39,7 @@ export default {
         });
       }
     },
+    
     async loginUser({ commit }, { email, password }) {
       commit("clearError");
       commit("setLoading", true);
