@@ -7,6 +7,7 @@ export default {
         promo: true,
         src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
         id: "1",
+        userId: "1",
       },
       {
         title: "Second",
@@ -14,6 +15,7 @@ export default {
         promo: true,
         src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
         id: "2",
+        userId: "1",
       },
       {
         title: "Third",
@@ -21,6 +23,7 @@ export default {
         promo: true,
         src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
         id: "3",
+        userId: "1",
       },
       {
         title: "Fouth",
@@ -28,6 +31,7 @@ export default {
         promo: true,
         src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
         id: "4",
+        userId: "1",
       },
     ],
   },
