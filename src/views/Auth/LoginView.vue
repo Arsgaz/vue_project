@@ -18,12 +18,13 @@
                         </v-form>
                     </v-card-text>
                     <v-card-actions>
-                        
+
                         <v-spacer></v-spacer>
 
-                        <v-btn color="primary" @click="onSubmit" :disabled="!valid">
+                        <v-btn color="primary" @click="onSubmit" :loading="loading" :disabled="!valid || loading">
                             Login
                         </v-btn>
+
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -50,23 +51,28 @@ export default {
         }
     },
     methods: {
-        onSubmit(){
-	if (this.$refs.form.validate()){
-		const user = {
-			email: this.email,
-			password: this.password
-		}
-		this.$store.dispatch('loginUser', user)
-		.then(() => {
-			this.$router.push("/")
-		})
-		.catch((err) => {
-			console.log(err)
-		})
-	}
-}
+        onSubmit() {
+            if (this.$refs.form.validate()) {
+                const user = {
+                    email: this.email,
+                    password: this.password
+                }
+                this.$store.dispatch('loginUser', user)
+                    .then(() => {
+                        this.$router.push("/")
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            }
+        }
+    },
+    computed: {
+        loading() {
+            return this.$store.getters.loading
+        }
+    },
 
-}
 
 } 
 </script>
