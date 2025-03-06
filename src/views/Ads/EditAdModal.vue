@@ -28,8 +28,8 @@
                 <v-col cols="12">
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn>Cancel</v-btn>
-                        <v-btn color="success">Save</v-btn>
+                        <v-btn @click="onCancel">Cancel</v-btn>
+                        <v-btn color="success" @click="onSave">Save</v-btn>
                     </v-card-actions>
                 </v-col>
             </v-row>
@@ -44,8 +44,26 @@ export default {
         return {
             modal: false,
             editedTitle: "",
-			editedDesc: "",
+            editedDesc: "",
+        }
+    },
+    methods: {
+        onCancel() {
+            this.editedTitle = this.ad.title
+            this.editedDesc = this.ad.desc
+            this.modal = false
+        },
+        onSave() {
+            if (this.editedTitle !== '' && this.editedDesc !== '') {
+                this.$store.dispatch('updateAd', {
+                    title: this.editedTitle,
+                    desc: this.editedDesc,
+                    id: this.ad.id
+                })
+                this.modal = false
+            }
         }
     }
+
 }
 </script>
