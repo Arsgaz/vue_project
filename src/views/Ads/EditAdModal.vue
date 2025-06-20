@@ -1,8 +1,7 @@
 <template>
     <v-dialog v-model="modal" width="400px">
         <template v-slot:activator="{ props }">
-            <v-btn v-bind="props" color="warning">
-                Edit</v-btn></template>
+            <v-btn v-bind="props" color="warning">Edit</v-btn></template>
         <v-card class="pa-3">
             <v-row justify="center">
                 <v-col cols="12">
@@ -15,12 +14,21 @@
             <v-row justify="center">
                 <v-col cols="12">
                     <v-card-text>
-                        <v-text-field name="title" label="Title" type="text" v-model="editedTitle">
+                        <v-text-field
+                            name="title"
+                            label="Title"
+                            type="text"
+                            v-model="editedTitle"
+                        >
                         </v-text-field>
-                        <v-textarea name="desc" label="Description" type="text" v-model="editedDesc"
-                            class="mb-3"></v-textarea>
+                        <v-textarea
+                            name="desc"
+                            label="Description"
+                            type="text"
+                            v-model="editedDesc"
+                            class="mb-3"
+                        ></v-textarea>
                     </v-card-text>
-
                 </v-col>
             </v-row>
 
@@ -43,8 +51,8 @@ export default {
     data() {
         return {
             modal: false,
-            editedTitle: "",
-            editedDesc: "",
+            editedTitle: this.ad.title,
+            editedDesc: this.ad.desc
         }
     },
     methods: {
@@ -63,7 +71,6 @@ export default {
                 this.modal = false
             }
         }
-    }
-
+        }
 }
 </script>

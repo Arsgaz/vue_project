@@ -60,8 +60,13 @@
       <router-view></router-view>
     </v-main>
 
-    <v-snackbar v-model="error" multi-line :timeout="2000" color="primary">
-      {{ error }}
+    <v-snackbar
+      v-model="snackbarVisible"
+      multi-line
+      :timeout="2000"
+      color="primary"
+    >
+      {{ errorMessage }}
       <template v-slot:actions>
         <v-btn variant="text" @click="closeError">
           Close
@@ -76,50 +81,47 @@ export default {
   data() {
     return {
       drawer: false,
-      // links: [
-      //   { title: "Login", icon: "mdi-lock", url: "/login" },
-      //   { title: "Registration", icon: "mdi-face", url: "/registration" },
-      //   {
-      //     title: "Orders", icon: "mdi-bookmark-multiple-outline",
-      //     url: "/orders"
-      //   },
-      //   { title: "New ad", icon: "mdi-note-plus-outline", url: "/new" },
-      //   { title: "My ads", icon: "mdi-view-list-outline", url: "/list" }
-      // ]
-    }
+      snackbarVisible: false, // Controls snackbar visibility
+    };
   },
   computed: {
-    error() {
-      return this.$store.getters.error
+    errorMessage() {
+      return this.$store.getters.error; // Renamed to clarify it’s the message
     },
     isUserLoggedIn() {
-      return this.$store.getters.isUserLoggedIn
+      return this.$store.getters.isUserLoggedIn;
     },
     links() {
       if (this.isUserLoggedIn) {
         return [
           { title: "Orders", icon: "mdi-bookmark-multiple-outline", url: "/orders" },
           { title: "New ad", icon: "mdi-note-plus-outline", url: "/new" },
-          { title: "My ads", icon: "mdi-view-list-outline", url: "/list" }
-        ]
+          { title: "My ads", icon: "mdi-view-list-outline", url: "/list" },
+        ];
       } else {
         return [
           { title: "Login", icon: "mdi-lock", url: "/login" },
           { title: "Registration", icon: "mdi-face", url: "/registration" },
-        ]
+        ];
       }
     },
   },
   methods: {
     closeError() {
-      this.$store.dispatch('clearError')
+      this.snackbarVisible = false;
+      this.$store.dispatch("clearError");
     },
     onLogout() {
-      this.$store.dispatch('logoutUser')
-      this.$router.push("/")
-    }
-
-  }
-
-}
+      this.$store.dispatch("logoutUser");
+      this.$router.push("/");
+    },
+  },
+  watch: {
+    errorMessage(newValue) {
+      if (newValue) {
+        this.snackbarVisible = true;
+      }
+    },
+  },
+};
 </script>

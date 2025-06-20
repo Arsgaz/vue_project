@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12">
         <v-card class="mt-5">
-          <v-img height="400px" :src="ad.src" cover></v-img>
+          <v-img height="300px" :src="ad.src"></v-img>
           <v-card-text>
             <h1 class="text--primary mb-3">{{ ad.title }}</h1>
             <p>
@@ -22,21 +22,18 @@
 </template>
 
 <script>
-import EditAdModal from './EditAdModal'
+import EditAdModal from './EditAdModal.vue'; 
+
 export default {
-  data() {
-    return {};
-  },
   props: ['id'],
   computed: {
     ad() {
-      const id = this.id
-      return this.$store.getters.adById(id)
-    }
+      const id = this.id;
+      return this.$store.getters.adById(id); // Получаем объявление по id
+    },
   },
   components: {
-		'modal-dialog': EditAdModal
-	}
-
+    'modal-dialog':EditAdModal, // Регистрируем компонент
+  },
 };
 </script>
