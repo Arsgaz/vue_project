@@ -1,6 +1,6 @@
-class Order {
+class Order {   
     constructor(name, phone, adId, userId, done = false, id = null) {
-        this.name = nameAdd 
+        this.name = name
         this.phone = phone
         this.adId = adId
         this.userId = userId
@@ -25,9 +25,6 @@ export default {
 	actions: {
         async createOrder({commit},{name, phone, adId, userId}) {
             let payload = new Order(name, phone, adId, userId,false, Math.random())
-
-
-
             commit('clearError')
             //Заглушка запроса
             let isRequestOk = true
@@ -48,6 +45,10 @@ export default {
         }
     },
 
-        getters: {}
-
+    getters: {
+        orders (state, getters) {
+            if (getters.user == null) return []
+            return state.orders.filter(order => order.userId == getters.user.id)
+        }
+    },
 }
